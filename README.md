@@ -26,7 +26,7 @@ For server 222:
 
 ![title](images/222.jpeg)
 
-For server 232:
+For server 232 or *default*:
 
 ![title](images/232.jpeg)
 
