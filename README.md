@@ -24,11 +24,11 @@ For server 13:
 
 For server 222:
 
-![title](images/13.jpeg)
+![title](images/222.jpeg)
 
 For server 232:
 
-![title](images/13.jpeg)
+![title](images/232.jpeg)
 
 For server 58: This excecution has the additional case that It will run the command *scolv -u user --debug*.
 
