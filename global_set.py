@@ -1,5 +1,5 @@
 # *************************************************************************************************
-# Routine: Modify the .seiscomp3/global.cfg file for a specific server (13, 58, 222, 232 - default)
+# Routine: Modify the .seiscomp3/global.cfg file for a specific server (13, 50, 58, 222, 232 - default)
 # 
 # Emmanuel Guzman Vitola 
 # emguzmanvi@unal.edu.co - eguzmanv@sgc.gov.co
