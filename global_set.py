@@ -115,9 +115,8 @@ if '/home/' in cwd:                                                # inside /hom
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes
     
     else:
-        print('Error: The possible inputs are: "13", "50", "58", "222" or "232" - "default".' +
-        '\nCheck your global.cfg, maybe the file doesnt have the server.')
+        print('Error: The possible inputs are: "13", "50", "58", "222" or "232" - "default".')
     
 else:
-    print('Error: You must be inside of /home/')
+    print('Error: You must be inside of /home/')  
     
