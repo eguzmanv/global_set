@@ -40,5 +40,4 @@ For server 58: This execution has the additional case that It will run the comma
 
 >Emmanuel Guzmán Vitola
 
->>eguzmanv@sgc.gov.co
->>emguzmanvi@unal.edu.co
+>>eguzmanv@sgc.gov.co, emguzmanvi@unal.edu.co
