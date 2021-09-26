@@ -13,7 +13,7 @@ import sys
 try:
     server = sys.argv[1]                                           # input server
 except:
-    print('Error: The possible inputs are: "13", "58", "222" or "232" - "default".\nExample: global_set 13')
+    print('Error: The possible inputs are: "13", "58", "50", "222" or "232" - "default".\nExample: global_set 13')
     sys.exit()
 
 cwd = os.getcwd()                                                  # full path of the current directory
@@ -41,16 +41,34 @@ if '/home/' in cwd:                                                # inside /hom
     # --- Useful functions ---
         # Uncomment the desired server in the global.cfg file
     def set_server(server, lines):
+        n_server = 0
+        n_58 = 0
         for i in range(0, len(lines)):
+            # Condition: the server exists in the global.cfg
             if server in lines[i]:
+                n_server =+ 1
                 if lines[i][0] == '#':
                     lines[i] = lines[i][1:]
+                
+                # Condition: server 58 with 2 lines or 3 lines commented
+                    # Note: some global.cfg files contain 2 lines and others 3 lines for the server 58, where in some cases the 3th line is associated with the server 232.
+                if server == '10.100.100.58' and n_58 < 2:
+                    n_58 =+ 1
+                    # Condition: if the 3th line exists, maybe it can be associated with the server 232
+                    if '10.100.100.232' in lines[i + 1]:
+                        if lines[i + 1][0] == '#':
+                            lines[i + 1] = lines[i + 1][1:]
+            
+            # Condition: the server doesn't exists in the global.cfg
+            elif i + 1 == len(lines) and n_server == 0:
+                print("The global.cfg does not have the server: " + server)
+                sys.exit()
         
         # Set the global.cfg as default (all servers commented)
     def default(lines):
         for i in range(0, len(lines)):
-            # Condition: comment servers 13 and 58 
-            if '10.100.100.13' in lines[i] or '10.100.100.58' in lines[i] or '10.100.100.222' in lines[i]:
+            # Condition: comment all servers
+            if '10.100.100' in lines[i]:
                 if lines[i][0] != '#':
                     lines[i] = '#' + lines[i]
         
@@ -68,14 +86,21 @@ if '/home/' in cwd:                                                # inside /hom
         set_server('10.100.100.13', lines)                         # set 10.100.100.13          
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes
         
+        # Condition: server 10.100.100.50
+    elif server == '50':
+    
+        default(lines)                                             # set the global.cfg as default (10.100.100.232)
+        set_server('10.100.100.50', lines)                         # set 10.100.100.50
+        overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes    
+    
         # Condition: server 10.100.100.58
     elif server == '58':
     
         default(lines)                                             # set the global.cfg as default (10.100.100.232)
-        set_server('10.100.100.58', lines)                         # set 10.100.100.58          
+        set_server('10.100.100.58', lines)                         # set 10.100.100.58
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes
-        os.system(cmd)
-    
+        os.system(cmd)                                             # Run the scolv
+
         # Condition: server 10.100.100.222
     elif server == '222':
     
@@ -90,7 +115,8 @@ if '/home/' in cwd:                                                # inside /hom
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes
     
     else:
-        print('Error: The possible inputs are: "13", "58", "222" or "232" - "default".')
+        print('Error: The possible inputs are: "13", "50", "58", "222" or "232" - "default".' +
+        '\nCheck your global.cfg, maybe the file doesnt have the server.')
     
 else:
     print('Error: You must be inside of /home/')
