@@ -39,6 +39,14 @@ if '/home/' in cwd:                                                # inside /hom
         lines = file.readlines()
     
     # --- Useful functions ---
+        # Set the global.cfg as default (all servers commented)
+    def default(lines):
+        for i in range(0, len(lines)):
+            # Condition: comment all servers
+            if '10.100.100' in lines[i]:
+                if lines[i][0] != '#':
+                    lines[i] = '#' + lines[i]
+        
         # Uncomment the desired server in the global.cfg file
     def set_server(server, lines):
         n_server = 0
@@ -63,15 +71,7 @@ if '/home/' in cwd:                                                # inside /hom
             elif i + 1 == len(lines) and n_server == 0:
                 print("The global.cfg does not have the server: " + server)
                 sys.exit()
-        
-        # Set the global.cfg as default (all servers commented)
-    def default(lines):
-        for i in range(0, len(lines)):
-            # Condition: comment all servers
-            if '10.100.100' in lines[i]:
-                if lines[i][0] != '#':
-                    lines[i] = '#' + lines[i]
-        
+
         # Overwrite the global.cfg file with the changes
     def overwrite(file_path, lines):
         file = open(file_path, 'w')
