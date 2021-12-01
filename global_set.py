@@ -43,7 +43,7 @@ if '/home/' in cwd:                                                # inside /hom
     def default(lines):
         for i in range(0, len(lines)):
             # Condition: comment all servers
-            if '10.100.100' in lines[i]:
+            if 'xx.xxx.xxx' in lines[i]:
                 if lines[i][0] != '#':
                     lines[i] = '#' + lines[i]
         
@@ -60,10 +60,10 @@ if '/home/' in cwd:                                                # inside /hom
                 
                 # Condition: server 58 with 2 lines or 3 lines commented
                     # Note: some global.cfg files contain 2 lines and others 3 lines for the server 58, where in some cases the 3th line is associated with the server 232.
-                if server == '10.100.100.58' and n_58 < 2:
+                if server == 'xx.xxx.xxx.58' and n_58 < 2:
                     n_58 =+ 1
                     # Condition: if the 3th line exists, maybe it can be associated with the server 232
-                    if '10.100.100.232' in lines[i + 1]:
+                    if 'xx.xxx.xxx.232' in lines[i + 1]:
                         if lines[i + 1][0] == '#':
                             lines[i + 1] = lines[i + 1][1:]
             
@@ -79,39 +79,39 @@ if '/home/' in cwd:                                                # inside /hom
         file.close()
 
     # --- Set the desired server (13, 58, 222, or default - 232) ---
-        # Condition: server 10.100.100.13
+        # Condition: server xx.xxx.xxx.13
     if server == '13':
     
         default(lines)                                             # set the global.cfg as default
-        set_server('10.100.100.13', lines)                         # set 10.100.100.13          
+        set_server('xx.xxx.xxx.13', lines)                         # set xx.xxx.xxx.13          
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes
         
-        # Condition: server 10.100.100.50
+        # Condition: server xx.xxx.xxx.50
     elif server == '50':
     
-        default(lines)                                             # set the global.cfg as default (10.100.100.232)
-        set_server('10.100.100.50', lines)                         # set 10.100.100.50
+        default(lines)                                             # set the global.cfg as default (xx.xxx.xxx.232)
+        set_server('xx.xxx.xxx.50', lines)                         # set xx.xxx.xxx.50
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes    
     
-        # Condition: server 10.100.100.58
+        # Condition: server xx.xxx.xxx.58
     elif server == '58':
     
-        default(lines)                                             # set the global.cfg as default (10.100.100.232)
-        set_server('10.100.100.58', lines)                         # set 10.100.100.58
+        default(lines)                                             # set the global.cfg as default (xx.xxx.xxx.232)
+        set_server('xx.xxx.xxx.58', lines)                         # set xx.xxx.xxx.58
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes
         os.system(cmd)                                             # Run the scolv
 
-        # Condition: server 10.100.100.222
+        # Condition: server xx.xxx.xxx.222
     elif server == '222':
     
-        default(lines)                                             # set the global.cfg as default (10.100.100.232)
-        set_server('10.100.100.222', lines)                        # set 10.100.100.222          
+        default(lines)                                             # set the global.cfg as default (xx.xxx.xxx.232)
+        set_server('xx.xxx.xxx.222', lines)                        # set xx.xxx.xxx.222          
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes
             
-        # Condition: default - server 10.100.100.232
+        # Condition: default - server xx.xxx.xxx.232
     elif server == 'default' or server == '232':
     
-        default(lines)                                             # set the global.cfg as default (10.100.100.232)
+        default(lines)                                             # set the global.cfg as default (xx.xxx.xxx.232)
         overwrite(file_path, lines)                                # overwrite the global.cfg file with the changes
     
     else:
