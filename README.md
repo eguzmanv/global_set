@@ -17,25 +17,6 @@ For any server of the list [13, 50, 58, 222, 232, *default*] (where 232 is the s
 python global_set.py server
 ```
 
-#### Some results
-For server 13:
-
-![title](images/13.jpeg)
-
-For server 222:
-
-![title](images/222.jpeg)
-
-For server 232 or *default*:
-
-![title](images/232.jpeg)
-
-For server 58: This execution has the additional case that It will run the command *scolv -u user --debug*.
-
-![title](images/58_00.jpeg)
-
-![title](images/58_01.jpeg)
-
 #
 
 >Emmanuel Guzmán Vitola
